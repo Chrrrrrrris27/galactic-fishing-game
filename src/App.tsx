@@ -1,4 +1,3 @@
-import './App.css';
 import { HomeSreen } from './screens/HomeSreen';
 import { Layout } from './layout/Layout';
 import { Providers } from './providers/Providers';
