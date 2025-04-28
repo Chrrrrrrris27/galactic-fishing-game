@@ -1,14 +1,16 @@
 import './App.css';
-import { Header } from './layout/Header';
 import { HomeSreen } from './screens/HomeSreen';
-import { Footer } from './layout/Footer';
+import { Layout } from './layout/Layout';
+import { Providers } from './providers/Providers';
 
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <HomeSreen/>
-      <Footer/>
+      <Providers>
+        <Layout>
+          <HomeSreen/>
+        </Layout>
+      </Providers>
     </div>
   );
 }

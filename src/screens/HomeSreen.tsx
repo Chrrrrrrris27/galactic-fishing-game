@@ -1,7 +1,10 @@
 import React from 'react'
+import { PlayersListComponent } from '../components/PlayersListComponent'
 
 export const HomeSreen = () => {
   return (
-    <div>HomeSreen</div>
+    <main>
+      <PlayersListComponent/>
+    </main>
   )
 }
