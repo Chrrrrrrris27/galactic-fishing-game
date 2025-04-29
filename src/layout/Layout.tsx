@@ -10,7 +10,7 @@ export const Layout = (props: Props) => {
   return (
     <>
       <Header/>
-      <main className="">
+      <main className="mx-auto max-w-5xl px-4 py-5 w-full">
         {props.children}
       </main>
       <Footer/>

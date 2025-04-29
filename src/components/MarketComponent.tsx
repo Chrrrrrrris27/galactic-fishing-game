@@ -1,7 +1,4 @@
-import { error } from "console";
-import { useFetchQuery } from "../hooks/useFetchQuery";
 import { MarketItem } from "../interfaces/MarketItemInterface";
-import { getMarket } from "../lib/api";
 import { ErrorMessageComponent } from "./ErrorMessageComponent";
 import { LoaderComponent } from "./LoaderComponent";
 import { MarketItemComponent } from "./MarketItemComponent";
@@ -18,7 +15,7 @@ export const MarketComponent = ({market, isLoading, error}: Props) => {
   if (error) return <ErrorMessageComponent/>;
 
   return (
-    <section>
+    <section className="grid grid-cols-3 gap-5 lg:grid-cols-2 sm:grid-cols-1">
       {
         market && market.map((item) => (
           <MarketItemComponent

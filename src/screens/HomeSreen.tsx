@@ -33,24 +33,36 @@ export const HomeSreen = () => {
 
   return (
     <>
-      <SwitchButtonComponent
-        options={switchOptions}
-        defaultOption={1}
-        setOption={setSelectedOption}
-      />
-      {
-        selectedOption === 1 ?
-          <PlayersListComponent
-            players={players}
-            isLoading={isLoadingPlayers}
-            error={errorPlayers}
-          />
-        : <MarketComponent
-            market={items}
-            isLoading={isLoadingMarket}
-            error={errorMarket}
-          />
-      }
+      <div className='my-20'>
+        <h1
+          className='font-title text-7xl text-center text-meadow-400'
+          title='Galactic-Fishing Game'
+        >
+          Galactic-Fishing Game
+        </h1>
+      </div>
+      <div className='w-96 max-w-full mx-auto'>
+        <SwitchButtonComponent
+          options={switchOptions}
+          defaultOption={1}
+          setOption={setSelectedOption}
+        />
+      </div>
+      <div className='mt-9'>
+        {
+          selectedOption === 1 ?
+            <PlayersListComponent
+              players={players}
+              isLoading={isLoadingPlayers}
+              error={errorPlayers}
+            />
+          : <MarketComponent
+              market={items}
+              isLoading={isLoadingMarket}
+              error={errorMarket}
+            />
+        }
+      </div>
     </>
   )
 }

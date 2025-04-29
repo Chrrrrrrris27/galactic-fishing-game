@@ -4,7 +4,7 @@ import { Providers } from './providers/Providers';
 
 function App() {
   return (
-    <div className="App">
+    <div className="bg-meadow-900 text-tapa-50">
       <Providers>
         <Layout>
           <HomeSreen/>
