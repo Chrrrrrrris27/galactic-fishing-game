@@ -1,14 +1,14 @@
-import { useFetchQuery } from "../hooks/useFetchQuery"
-import { getPlayers } from "../lib/api";
+import { Player } from "../interfaces/PlayerInterface";
 import { ErrorMessageComponent } from "./ErrorMessageComponent";
 import { LoaderComponent } from "./LoaderComponent";
 
-export const PlayersListComponent = () => {
+type Props = {
+  players: Player[] | undefined,
+  isLoading: boolean,
+  error: Error | null
+}
 
-  const { data: players, error, isLoading } = useFetchQuery(
-    ["players"],
-    getPlayers
-  );
+export const PlayersListComponent = ({players, isLoading, error}: Props) => {
 
   if (isLoading) return <LoaderComponent isLoading/>
   if (error) return <ErrorMessageComponent/>;

@@ -1,15 +1,18 @@
+import { error } from "console";
 import { useFetchQuery } from "../hooks/useFetchQuery";
+import { MarketItem } from "../interfaces/MarketItemInterface";
 import { getMarket } from "../lib/api";
 import { ErrorMessageComponent } from "./ErrorMessageComponent";
 import { LoaderComponent } from "./LoaderComponent";
 import { MarketItemComponent } from "./MarketItemComponent";
 
-export const MarketComponent = () => {
+type Props = {
+  market: MarketItem[] | undefined,
+  isLoading: boolean,
+  error: Error | null
+}
 
-  const { data: items, error, isLoading } = useFetchQuery(
-      ["market"],
-      getMarket
-    );
+export const MarketComponent = ({market, isLoading, error}: Props) => {
   
   if (isLoading) return <LoaderComponent isLoading/>
   if (error) return <ErrorMessageComponent/>;
@@ -17,7 +20,7 @@ export const MarketComponent = () => {
   return (
     <section>
       {
-        items && items.map((item) => (
+        market && market.map((item) => (
           <MarketItemComponent
             key={item.id}
             item={item}

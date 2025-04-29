@@ -3,6 +3,8 @@ import { PlayersListComponent } from '../components/PlayersListComponent'
 import { MarketComponent } from '../components/MarketComponent'
 import { SwitchButtonComponent } from '../components/SwitchButtonComponent'
 import { SwitchOption } from '../interfaces/SwitchOptionInterface'
+import { useFetchQuery } from '../hooks/useFetchQuery'
+import { getMarket, getPlayers } from '../lib/api'
 
 const switchOptions: SwitchOption[] = [
   {
@@ -16,6 +18,17 @@ const switchOptions: SwitchOption[] = [
 ]
 export const HomeSreen = () => {
 
+
+  const { data: players, error: errorPlayers, isLoading: isLoadingPlayers } = useFetchQuery(
+    ["players"],
+    getPlayers
+  );
+
+  const { data: items, error: errorMarket, isLoading: isLoadingMarket } = useFetchQuery(
+    ["market"],
+    getMarket
+  );
+
   const [selectedOption, setSelectedOption] = useState<number | undefined>();
 
   return (
@@ -27,8 +40,16 @@ export const HomeSreen = () => {
       />
       {
         selectedOption === 1 ?
-          <PlayersListComponent/>
-        : <MarketComponent/>
+          <PlayersListComponent
+            players={players}
+            isLoading={isLoadingPlayers}
+            error={errorPlayers}
+          />
+        : <MarketComponent
+            market={items}
+            isLoading={isLoadingMarket}
+            error={errorMarket}
+          />
       }
     </>
   )

@@ -11,6 +11,7 @@ export function useFetchQuery<T>(
     queryFn,
     staleTime: QUERY_CONFIG.STALE_TIME,
     retry: QUERY_CONFIG.RETRY,
+    refetchInterval: QUERY_CONFIG.CACHE_TIME,
     ...options,
   });
 }
