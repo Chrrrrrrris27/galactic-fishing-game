@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { PlayersListComponent } from '../components/PlayersListComponent'
 import { MarketComponent } from '../components/MarketComponent'
 import { SwitchButtonComponent } from '../components/SwitchButtonComponent'
 import { SwitchOption } from '../interfaces/SwitchOptionInterface'
 import { useFetchQuery } from '../hooks/useFetchQuery'
 import { getMarket, getPlayers } from '../lib/api'
+import { EnumStorageTypes, useStorage } from '../hooks/useStorage'
+import { EnumStorageKeys } from '../enums/enumStorageKeys'
+import { useOnlineVerification } from '../hooks/useOnlineVerification'
 
 const switchOptions: SwitchOption[] = [
   {
@@ -18,24 +21,53 @@ const switchOptions: SwitchOption[] = [
 ]
 export const HomeSreen = () => {
 
+  const { setStorageItem } = useStorage(EnumStorageTypes.local);
+  const online = useOnlineVerification();
 
   const { data: players, error: errorPlayers, isLoading: isLoadingPlayers } = useFetchQuery(
     ["players"],
-    getPlayers
+    getPlayers,
+    {
+      enabled: online
+    }
   );
 
   const { data: items, error: errorMarket, isLoading: isLoadingMarket } = useFetchQuery(
     ["market"],
-    getMarket
+    getMarket,
+    {
+      enabled: online
+    }
   );
 
   const [selectedOption, setSelectedOption] = useState<number | undefined>();
+
+  useEffect(() => {
+    if (players && players.length > 0) {
+      setStorageItem(EnumStorageKeys.RANKING, {
+        time: new Date().getTime(),
+        ranking: players
+      });
+    } 
+  
+  }, [players, setStorageItem])
+
+  useEffect(() => {
+    if (items && items.length > 0) {
+      setStorageItem(EnumStorageKeys.MARKET, {
+        time: new Date().getTime(),
+        market: items
+      });
+    } 
+  
+  }, [items, setStorageItem])
+  
 
   return (
     <>
       <div className='my-20'>
         <h1
-          className='font-title text-7xl text-center text-meadow-400'
+          className='font-title text-7xl text-center text-meadow-50'
           title='Galactic-Fishing Game'
         >
           Galactic-Fishing Game

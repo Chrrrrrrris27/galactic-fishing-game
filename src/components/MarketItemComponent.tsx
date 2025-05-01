@@ -9,17 +9,20 @@ export const MarketItemComponent = ({item}: Props) => {
 
   const getItemIcon = (type: string): string => {
     if (type.includes("fishing")) return "fluent-emoji-flat:fishing-pole";
-    if (type.includes("poison")) return "mdi:bottle-tonic";
+    if (type.includes("poison")) return "game-icons:spiral-bottle";
     return "entypo:new";
   }
   return (
     <article className='bg-tapa-900 rounded-2xl flex flex-col p-4 border-meadow-300 border-4'>
       <header className='flex gap-1 items-start'>
-        <Icon
-          icon={getItemIcon(item.type)}
-          fontSize={40}
-          color='purple'
-        />
+
+        <span className='text-3xl'>
+          <Icon
+            icon={getItemIcon(item.type)}
+            // fontSize={40}
+            color='purple'
+          />
+        </span>
         <h3 className='font-title text-3xl'>{item.name}</h3>
       </header>
       <main className='text-lg pb-3 mt-1'>
