@@ -10,7 +10,7 @@ export const navItems: navItemInterface[] = [
   {
     name: "Github",
     icon: "mingcute:github-fill",
-    link: "/"
+    link: "https://github.com/Chrrrrrrris27/galactic-fishing-game"
   },
   {
     name: "Linkedin",
