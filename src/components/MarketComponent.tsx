@@ -18,7 +18,7 @@ export const MarketComponent = ({market, isLoading, error}: Props) => {
 
   const { getStorageItem } = useStorage(EnumStorageTypes.local);
   const online = useOnlineVerification();
-  const [currentMarket, setCurrentMarket] = useState<MarketItem[]>(getStorageItem(EnumStorageKeys.MARKET).market);
+  const [currentMarket, setCurrentMarket] = useState<MarketItem[]>(getStorageItem(EnumStorageKeys.MARKET)?.market);
   const [storageMarketDate, setStorageMarketDate] = useState<Date>();
 
   useEffect(() => {
@@ -26,8 +26,10 @@ export const MarketComponent = ({market, isLoading, error}: Props) => {
       setCurrentMarket(market);
     } else {
       const storageMarket = getStorageItem(EnumStorageKeys.MARKET) as MarketStorageInterface;
-      setCurrentMarket(storageMarket.market);
-      setStorageMarketDate(new Date(storageMarket.time));
+      if (storageMarket) {
+        setCurrentMarket(storageMarket.market);
+        setStorageMarketDate(new Date(storageMarket.time));
+      }
     }
   
     

@@ -54,7 +54,7 @@ export const PlayersListComponent = ({players, isLoading, error}: Props) => {
   const { getStorageItem } = useStorage(EnumStorageTypes.local);
 
   const [currentPlayers, setCurrentPlayers] = useState<Player[]>();
-  const [totalPlayers, setTotalPlayers] = useState<Player[]>(getStorageItem(EnumStorageKeys.RANKING).ranking);
+  const [totalPlayers, setTotalPlayers] = useState<Player[]>(getStorageItem(EnumStorageKeys.RANKING)?.ranking);
   const [storageRankingDate, setStorageRankingDate] = useState<Date>();
   const [currentPage, setCurrentPage] = useState<number>(defaultPage);
 
@@ -66,9 +66,11 @@ export const PlayersListComponent = ({players, isLoading, error}: Props) => {
       setTotalPlayers(players);
     } else {
       const storagePlayers = getStorageItem(EnumStorageKeys.RANKING) as RankingStorageInterface;
-      setStorageRankingDate(new Date(storagePlayers.time));
-      setCurrentPlayers(storagePlayers.ranking.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
-      setTotalPlayers(storagePlayers.ranking);
+      if (storagePlayers) {
+        setStorageRankingDate(new Date(storagePlayers.time));
+        setCurrentPlayers(storagePlayers.ranking.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage));
+        setTotalPlayers(storagePlayers.ranking);
+      }
     }
     
   }, [players, currentPage, online])
