@@ -65,9 +65,12 @@ export const HomeSreen = () => {
 
   return (
     <>
-      <div className='my-20'>
+      <div className='mt-8 mb-10'>
+        <span className='text-meadow-50 font-title block text-center text-5xl'>
+          Welcome to
+        </span>
         <h1
-          className='font-title text-7xl text-center text-meadow-50'
+          className='font-title text-8xl text-center text-meadow-50 break-words sm:text-7xl'
           title='Galactic-Fishing Game'
         >
           Galactic-Fishing Game
