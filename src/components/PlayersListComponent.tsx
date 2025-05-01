@@ -109,8 +109,19 @@ export const PlayersListComponent = ({players, isLoading, error}: Props) => {
                   <td className="p-4 w-14 pl-10 sm:pl-4 border-r border-tapa-50 sm:text-center">
                     {player.rank}
                   </td>
-                  <td className="p-4 pl-10 sm:pl-4 border-r border-tapa-50 text-ellipsis overflow-hidden">
+                  <td className="p-4 pl-10 sm:pl-4 border-r border-tapa-50 text-ellipsis overflow-hidden relative">
                     {player.username}
+                    <span className="ml-1 sm:ml-0" title={player.emojiDescription}>
+                      {player.fishEmojis}
+                    </span>
+                    {
+                      player.isInfected &&
+                      <span className="absolute top-[50%] translate-y-[-50%] right-2 text-danger animate-pulse text-lg">
+                        <Icon
+                          icon={"emojione-monotone:skull-and-crossbones"}
+                        />
+                      </span>
+                    }
                   </td>
                   <td className="p-4 text-center border-r border-tapa-50">
                     {player.level}

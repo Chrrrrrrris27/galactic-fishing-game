@@ -37,7 +37,7 @@ export const MarketComponent = ({market, isLoading, error}: Props) => {
   if (isLoading) return <LoaderComponent isLoading/>
 
   return (
-    <div>
+    <div className="mb-5">
       <LastUpdateMessageComponent
         showMessage={!!error || !online}
         date={storageMarketDate}

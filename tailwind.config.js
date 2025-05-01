@@ -49,7 +49,9 @@ module.exports = {
         '700': '#504E4A',
         '800': '#3A3936',
         '900': '#252423',
-      }
+      },
+      'danger': 'red',
+      'transparent': 'transparent'
     }
   },
   plugins: [],

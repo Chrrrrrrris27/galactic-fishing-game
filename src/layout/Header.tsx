@@ -1,4 +1,3 @@
-import { Icon } from "@iconify/react";
 import Logo from "../assets/images/logo.webp";
 import { NavigationComponent } from "../components/NavigationComponent";
 

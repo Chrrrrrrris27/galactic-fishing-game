@@ -4,7 +4,7 @@ import { Providers } from './providers/Providers';
 
 function App() {
   return (
-    <div className="bg-meadow-900 text-tapa-50">
+    <div className="bg-meadow-900 text-tapa-50 min-h-screen grid sm:block">
       <Providers>
         <Layout>
           <HomeSreen/>

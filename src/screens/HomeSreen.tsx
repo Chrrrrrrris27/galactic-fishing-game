@@ -77,11 +77,14 @@ export const HomeSreen = () => {
         </h1>
       </div>
       <div className='w-96 max-w-full mx-auto'>
-        <SwitchButtonComponent
-          options={switchOptions}
-          defaultOption={1}
-          setOption={setSelectedOption}
-        />
+        {
+          !isLoadingPlayers && !isLoadingMarket &&
+          <SwitchButtonComponent
+            options={switchOptions}
+            defaultOption={1}
+            setOption={setSelectedOption}
+          />
+        }
       </div>
       <div className='mt-9'>
         {
